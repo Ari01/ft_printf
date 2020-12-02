@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 07:26:25 by user42            #+#    #+#             */
-/*   Updated: 2020/12/01 10:38:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/02 05:51:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int		ft_printf(const char *s, ...)
 int main(void)
 {
 	printf("\n-------------------- FLAGS ------------------------\n");
-
-	printf("%0d\n", 42);
-	ft_printf("%0d\n", 42);
+	printf("%.*d", -10, 42);
 /*
 	printf("%0d\n", 42);
 	ft_printf("%0d\n", 42);
@@ -54,6 +52,9 @@ int main(void)
 
 	printf("%10d\n", 42);
 	ft_printf("%10d\n", 42);
+
+	printf("%00010d\n", 42);
+	ft_printf("%00010d\n", 42);
 
 		// errors
 		// printf("")
