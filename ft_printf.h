@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 14:16:34 by user42            #+#    #+#             */
-/*   Updated: 2020/12/03 08:56:05 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/03 14:14:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ t_spec			set_precision(t_spec spec, const char **s, va_list ap);
 t_spec			set_specifier(t_spec spec, const char **s);
 t_spec			parse_specs(const char **s, va_list ap);
 
-void			print_int(t_spec spec, int arg);
+
+char			*convert_u(unsigned int n);
+
+void			print_int(t_spec spec, char *arg);
 
 #endif

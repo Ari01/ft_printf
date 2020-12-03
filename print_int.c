@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/03 11:14:08 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/03 14:05:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,8 @@ void	freeptrs(char *s, char *zero, char *space)
 	space = NULL;
 }
 
-void	print_int(t_spec spec, int arg)
+void	print_int(t_spec spec, char *arg)
 {
-	char    *s;
 	char    *zero;
 	char    *space;
 	int		nzero;
@@ -73,21 +72,20 @@ void	print_int(t_spec spec, int arg)
 
 	zero = NULL;
 	space = NULL;
-	s = ft_itoa(arg);
-	if (!s)
+	if (!arg)
 		return ;
-	nzero = get_nzeros(spec, s);
-	nspace = get_nspaces(spec, s, nzero);
+	nzero = get_nzeros(spec, arg);
+	nspace = get_nspaces(spec, arg, nzero);
 	zero = ft_strnew('0', nzero);
 	space = ft_strnew(' ', nspace);
 	if (!zero || !space)
 		return ;
-	if (spec.minus > 0)
+	if (spec.minus < 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
 	ft_putstr_fd(zero, STDOUT_FILENO);
 	if (arg || spec.precision)
-		ft_putstr_fd(s, STDOUT_FILENO);
-	if (spec.minus < 0)
+		ft_putstr_fd(arg, STDOUT_FILENO);
+	if (spec.minus > 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
-	freeptrs(s, zero, space);
+	freeptrs(arg, zero, space);
 }

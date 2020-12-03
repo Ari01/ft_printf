@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 08:29:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/03 11:53:44 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/03 14:13:03 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,13 @@ ssize_t	print_arg(const char **s, va_list ap)
 
 	spec = parse_specs(s, ap);
 	if (spec.specifier == 'd' || spec.specifier == 'i')
-        print_int(spec, va_arg(ap, int));
+        print_int(spec, ft_itoa(va_arg(ap, int)));
+	if (spec.specifier == 'u')
+		print_int(spec, convert_u(va_arg(ap, unsigned int)));
+/*	if (spec.specifier == 'x')
+		print_int(spec, va_arg(ap, unsigned int));
+	if (spec.specifier == 'X')
+		print_int(spec, va_arg(ap, unsigned int));*/
 	return (0);
 }
 
