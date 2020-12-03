@@ -6,9 +6,11 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 06:27:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/02 06:28:10 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/03 08:58:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int		ft_is_in_charset(const char c, const char *charset)
 {
@@ -70,8 +72,8 @@ t_spec	set_precision(t_spec spec, const char **s, va_list ap)
 			spec.precision = va_arg(ap, int);
 			*s += 1;
 		}
-		if (spec.precision < 0)
-			spec.precision = 0;
+		if (spec.precision >= 0)
+			spec.zero = 0;
 	}
 	return (spec);
 }

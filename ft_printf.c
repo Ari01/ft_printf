@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 08:29:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/02 07:04:37 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/03 08:53:38 by dchheang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ ssize_t	print_arg(const char **s, va_list ap)
 	t_spec spec;
 
 	spec = parse_specs(s, ap);
-	printf("spec.minus = %d\n", spec.minus);
-	printf("spec.zero = %d\n", spec.zero);
-	printf("spec.width = %d\n", spec.width);
-	printf("spec.precision = %d\n", spec.precision);
-	printf("spec.specifier = %d\n", spec.specifier);
+    if (spec.specifier == 'd' || spec.specifier == 'i')
+        print_int(spec, va_arg(ap, int));
+	return (0);
 }
 
 int		ft_printf(const char *s, ...)
