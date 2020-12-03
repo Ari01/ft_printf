@@ -6,11 +6,13 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 14:15:30 by user42            #+#    #+#             */
-/*   Updated: 2020/12/03 14:28:44 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/03 17:19:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static size_t	get_nb_len(unsigned int n, size_t baselen)
+#include "ft_printf.h"
+
+static size_t	get_nb_len(unsigned long int n, size_t baselen)
 {
 	size_t len;
 
@@ -22,7 +24,7 @@ static size_t	get_nb_len(unsigned int n, size_t baselen)
 	return (len);
 }
 
-char			*convert_base(unsigned int n, char *base)
+char			*convert_base(unsigned long int n, char *base)
 {
 	int		baselen;
 	size_t	nblen;
@@ -37,8 +39,8 @@ char			*convert_base(unsigned int n, char *base)
 	s[nblen] = 0;
 	while (n)
 	{
-		s[--nblen] = base[n % baselen + '0'];
-		n = n / 10;
+		s[--nblen] = base[n % baselen];
+		n = n / baselen;
 	}
 	return (s);
 }

@@ -6,16 +6,13 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 08:29:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/03 14:13:03 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/03 17:49:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdarg.h>
-#include <unistd.h>
 
-#include <stdio.h>
-ssize_t	print_string(const char *s, size_t len)
+ssize_t	strlprint(const char *s, size_t len)
 {
 	return (write(STDOUT_FILENO, s, len));
 }
@@ -26,13 +23,23 @@ ssize_t	print_arg(const char **s, va_list ap)
 
 	spec = parse_specs(s, ap);
 	if (spec.specifier == 'd' || spec.specifier == 'i')
-        print_int(spec, ft_itoa(va_arg(ap, int)));
+        return (print_int(spec, ft_itoa(va_arg(ap, int))));
 	if (spec.specifier == 'u')
-		print_int(spec, convert_u(va_arg(ap, unsigned int)));
-/*	if (spec.specifier == 'x')
-		print_int(spec, va_arg(ap, unsigned int));
+		return (print_int(spec, convert_u(va_arg(ap, unsigned int))));
+	if (spec.specifier == 'x')
+		return (print_int(spec, convert_base(va_arg(ap, unsigned int), "0123456789abcdef")));
 	if (spec.specifier == 'X')
-		print_int(spec, va_arg(ap, unsigned int));*/
+		return (print_int(spec, convert_base(va_arg(ap, unsigned int), "0123456789ABCDEF")));
+	if (spec.specifier == 'c')
+	{
+		ft_putchar_fd((unsigned char)(va_arg(ap, int)), STDOUT_FILENO);
+		return (1);
+	}
+	if (spec.specifier == 's')
+		return (print_string(spec, va_arg(ap, const char *)));
+	if (spec.specifier == 'p')
+		return (print_adress(spec, va_arg(ap, void *)));
+		
 	return (0);
 }
 
@@ -49,7 +56,7 @@ int		ft_printf(const char *s, ...)
 		tmp = s;
 		while (*tmp && *tmp != '%')
 			tmp++;
-		print_string(s, tmp - s);
+		nbytes_written += strlprint(s, tmp - s);
 		s = tmp;
 		if (*s == '%')
 		{
@@ -57,10 +64,11 @@ int		ft_printf(const char *s, ...)
 			if (*s == '%')
 			{
 				write(STDOUT_FILENO, "%", 1);
+				nbytes_written++;
 				s++;
 			}
 			else
-				print_arg(&s, ap);
+				nbytes_written += print_arg(&s, ap);
 		}
 	}
 	va_end(ap);

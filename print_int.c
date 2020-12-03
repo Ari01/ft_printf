@@ -6,13 +6,12 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/03 14:05:57 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/03 17:48:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-#include <stdio.h>
 char    *ft_strnew(char c, size_t len)
 {
 	char    *zero;
@@ -63,23 +62,26 @@ void	freeptrs(char *s, char *zero, char *space)
 	space = NULL;
 }
 
-void	print_int(t_spec spec, char *arg)
+#include <stdio.h>
+int		print_int(t_spec spec, char *arg)
 {
 	char    *zero;
 	char    *space;
 	int		nzero;
 	int		nspace;
+	int		arglen;
 
 	zero = NULL;
 	space = NULL;
 	if (!arg)
-		return ;
+		return 0;
+	arglen = ft_strlen(arg);
 	nzero = get_nzeros(spec, arg);
 	nspace = get_nspaces(spec, arg, nzero);
 	zero = ft_strnew('0', nzero);
 	space = ft_strnew(' ', nspace);
 	if (!zero || !space)
-		return ;
+		return 0;
 	if (spec.minus < 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
 	ft_putstr_fd(zero, STDOUT_FILENO);
@@ -88,4 +90,5 @@ void	print_int(t_spec spec, char *arg)
 	if (spec.minus > 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
 	freeptrs(arg, zero, space);
+	return (nspace + nzero + arglen);
 }

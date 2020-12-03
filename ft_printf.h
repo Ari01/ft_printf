@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 14:16:34 by user42            #+#    #+#             */
-/*   Updated: 2020/12/03 14:14:32 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/03 17:25:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,11 @@ t_spec			parse_specs(const char **s, va_list ap);
 
 
 char			*convert_u(unsigned int n);
+char			*convert_base(unsigned long int n, char *base);
 
-void			print_int(t_spec spec, char *arg);
+int				print_int(t_spec spec, char *arg);
+int				print_string(t_spec spec, const char *s);
+int				print_adress(t_spec spec, void *adr);
+ssize_t			strlprint(const char *s, size_t len);
 
 #endif
