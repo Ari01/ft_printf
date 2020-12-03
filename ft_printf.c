@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 08:29:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/03 08:53:38 by dchheang         ###   ########.fr       */
+/*   Updated: 2020/12/03 11:53:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ ssize_t	print_arg(const char **s, va_list ap)
 	t_spec spec;
 
 	spec = parse_specs(s, ap);
-    if (spec.specifier == 'd' || spec.specifier == 'i')
+	if (spec.specifier == 'd' || spec.specifier == 'i')
         print_int(spec, va_arg(ap, int));
 	return (0);
 }
@@ -43,16 +43,17 @@ int		ft_printf(const char *s, ...)
 		tmp = s;
 		while (*tmp && *tmp != '%')
 			tmp++;
-		print_string(tmp, tmp - s);
+		print_string(s, tmp - s);
 		s = tmp;
 		if (*s == '%')
 		{
-			if (*(s + 1) == '%')
+			s++;
+			if (*s == '%')
 			{
 				write(STDOUT_FILENO, "%", 1);
 				s++;
 			}
-			if (*s == '%')
+			else
 				print_arg(&s, ap);
 		}
 	}
