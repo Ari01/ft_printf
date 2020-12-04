@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 09:24:32 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 09:41:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ int				print_int(t_spec spec, char *arg)
 {
 	char    *zero;
 	char    *space;
+	char	*free;
 	int		arglen;
 	int		res;
 
-	zero = NULL;
-	space = NULL;
+	free = arg;
 	res = get_zero_space(spec, &zero, &space, arg);
 	if (!arg || !zero || !space)
 		return 0;
@@ -86,6 +86,6 @@ int				print_int(t_spec spec, char *arg)
 		ft_putstr_fd(arg, STDOUT_FILENO);
 	if (spec.minus > 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
-	freeptrs(arg, zero, space);
+	freeptrs(free, zero, space);
 	return (res);
 }
