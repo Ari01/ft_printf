@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 14:16:34 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 06:44:14 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 06:51:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct	s_spec
 	int			precision;
 	int			specifier;
 }				t_spec;
+
+char		   *ft_strnew(char c, size_t len);
 
 t_spec			set_flag(t_spec spec, const char **s);
 t_spec			set_width(t_spec spec, const char **s, va_list ap);

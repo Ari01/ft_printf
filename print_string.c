@@ -6,20 +6,45 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 16:42:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/03 17:27:16 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 07:07:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		print_string(t_spec spec, const char *s)
+static int	get_nspace(t_spec spec, int len)
 {
-	size_t len;
+	if (spec.width > len)
+		return (spec.width - len);
+	return (0);
+}
 
-	if (spec.precision > 0 && spec.precision <= (int)ft_strlen(s))
+int			print_string(t_spec spec, const char *s)
+{
+	size_t	len;
+	int		nspace;
+	char	*space;
+
+	space = NULL;
+	if (!s)
+		return (0);
+	if (spec.precision >= 0 && spec.precision <= (int)ft_strlen(s))
 		len = spec.precision;
 	else
 		len = ft_strlen(s);
+	nspace = get_nspace(spec, len);
+	if (npace)
+	{
+		space = ft_strnew(' ', nspace);
+		if (!space)
+			return (0);
+	}
+	if (space && spec.minus < 0)
+		ft_putstr_fd(space, STDOUT_FILENO);
 	strlprint(s, len);
-	return (len);
+	if (space && spec.minus > 0)
+		ft_putstr_fd(space, STDOUT_FILENO);
+	free(space);
+	space = NULL;
+	return (len + nspace);
 }

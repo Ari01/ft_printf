@@ -6,31 +6,25 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/03 17:48:59 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 06:54:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char    *ft_strnew(char c, size_t len)
+char			 *ft_strnew(char c, size_t len)
 {
 	char    *zero;
-	size_t  i;
 
 	zero = malloc(sizeof(*zero) * (len + 1));
 	if (!zero)
 		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		zero[i] = c;
-		i++;
-	}
+	ft_memset(zero, c, len);
 	zero[i] = 0;
 	return (zero);
 }
 
-size_t	get_nzeros(t_spec spec, char *arg)
+static size_t	get_nzeros(t_spec spec, char *arg)
 {
 	int nblen;
 
@@ -42,7 +36,7 @@ size_t	get_nzeros(t_spec spec, char *arg)
 	return (0);
 }
 
-size_t	get_nspaces(t_spec spec, char *arg, int nzero)
+size_t			get_nspaces(t_spec spec, char *arg, int nzero)
 {
 	int nblen;
 
@@ -52,7 +46,7 @@ size_t	get_nspaces(t_spec spec, char *arg, int nzero)
 	return (0);
 }
 
-void	freeptrs(char *s, char *zero, char *space)
+void			freeptrs(char *s, char *zero, char *space)
 {
 	free (s);
 	free (zero);
@@ -62,8 +56,7 @@ void	freeptrs(char *s, char *zero, char *space)
 	space = NULL;
 }
 
-#include <stdio.h>
-int		print_int(t_spec spec, char *arg)
+int				print_int(t_spec spec, char *arg)
 {
 	char    *zero;
 	char    *space;

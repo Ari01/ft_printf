@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 06:34:06 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 06:43:41 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 07:05:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int		print_char(t_spec spec, unsigned char c)
 		nbytes_written += ft_strlen(space);
 	}
 	free(space);
+	space = NULL;
 	return (nbytes_written);
 }
