@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 04:58:26 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 12:45:00 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 13:07:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ t_spec	init_spec()
 {
 	t_spec spec;
 
+	spec.plus = -1;
 	spec.minus = -1;
 	spec.zero = -1;
 	spec.space = -1;
 	spec.width = -1;
 	spec.precision = -1;
 	spec.specifier = -1;
+	spec.hash = -1;
 	return (spec);
 }
 
