@@ -13,7 +13,8 @@ NAME = libftprintf.a
 RM = rm -Rf
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
-LFLAGS = -I libft
+LFLAGS = -L libft -lft
+INCLUDE = -I libft
 LIB = ar cr
 LIBFT = libft
 
@@ -28,7 +29,7 @@ $(NAME) :	$(OBJS)
 			$(LIB) $@ $^
 
 .c.o :		
-			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) $(LFLAGS)
+			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) $(INCLUDE)
 
 clean :
 			$(RM) $(OBJS)
