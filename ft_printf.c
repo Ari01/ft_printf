@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 08:29:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/03 17:49:25 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 06:45:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ ssize_t	print_arg(const char **s, va_list ap)
 		return (print_int(spec, convert_base(va_arg(ap, unsigned int), "0123456789abcdef")));
 	if (spec.specifier == 'X')
 		return (print_int(spec, convert_base(va_arg(ap, unsigned int), "0123456789ABCDEF")));
+	if (spec.specifier == '%')
+		return (print_int(spec, "%"));
 	if (spec.specifier == 'c')
-	{
-		ft_putchar_fd((unsigned char)(va_arg(ap, int)), STDOUT_FILENO);
-		return (1);
-	}
+		return (print_char(spec, va_arg(ap, unsigned char)));
 	if (spec.specifier == 's')
 		return (print_string(spec, va_arg(ap, const char *)));
 	if (spec.specifier == 'p')
 		return (print_adress(spec, va_arg(ap, void *)));
-		
 	return (0);
 }
+
+int		ft_printf(const char *s, ...) __attribute__((format(printf, 1, 2)));
 
 int		ft_printf(const char *s, ...)
 {
@@ -61,14 +61,7 @@ int		ft_printf(const char *s, ...)
 		if (*s == '%')
 		{
 			s++;
-			if (*s == '%')
-			{
-				write(STDOUT_FILENO, "%", 1);
-				nbytes_written++;
-				s++;
-			}
-			else
-				nbytes_written += print_arg(&s, ap);
+			nbytes_written += print_arg(&s, ap);
 		}
 	}
 	va_end(ap);

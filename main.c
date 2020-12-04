@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 07:26:25 by user42            #+#    #+#             */
-/*   Updated: 2020/12/03 17:45:50 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 06:23:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 #include <stdarg.h>
 #include <limits.h>
 #include "ft_printf.h"
-
-int		ft_printf(const char *s, ...)
-		__attribute__((format(printf, 1, 2)));
 
 int main(void)
 {
@@ -177,6 +174,10 @@ int main(void)
 
 	printf("n = %d ", printf("%p\n", s2));
 	printf("n = %d ", ft_printf("%p\n", s2));
+
+	printf("\n--------------------- %% ---------------------------\n");
+	printf("%5%\n");
+	ft_printf("%5%\n\n");
 
 	return (0);
 }
