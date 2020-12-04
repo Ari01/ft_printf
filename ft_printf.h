@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 14:16:34 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 11:21:26 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 12:33:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define FLAG_CHARSET "-0"
+# define FLAG_CHARSET "-0 "
 # define SPECIFIER_CHARSET "cspdiuxX%"
 
 typedef struct	s_spec
