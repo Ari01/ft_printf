@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 13:43:26 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 13:29:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,17 @@ void			print_sign(t_spec spec, char **arg)
 			ft_putchar_fd('-', STDOUT_FILENO);
 			*arg += 1;
 		}
+		else if (spec.plus > 0)
+			ft_putchar_fd('+', STDOUT_FILENO);
+		else if (spec.space > 0)
+			ft_putchar_fd(' ', STDOUT_FILENO);
+	}
+	else if (spec.hash > 0)
+	{
+		if (spec.specifier == 'x' && number)
+			ft_putstr_fd("0x", STDOUT_FILENO);
+		else if (spec.specifier == 'X' && number)
+			ft_putstr_fd("0X", STDOUT_FILENO);
 	}
 }
 

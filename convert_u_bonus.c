@@ -1,37 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_specs.c                                      :+:      :+:    :+:   */
+/*   convert_u.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/02 04:58:26 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 13:44:36 by user42           ###   ########.fr       */
+/*   Created: 2020/12/03 14:10:55 by user42            #+#    #+#             */
+/*   Updated: 2020/12/03 14:14:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_spec	init_spec()
+static size_t	get_nb_len(unsigned int n)
 {
-	t_spec spec;
+	size_t len;
 
-	spec.minus = -1;
-	spec.zero = -1;
-	spec.width = -1;
-	spec.precision = -1;
-	spec.specifier = -1;
-	return (spec);
+	len = 1;
+	if (n < 10)
+		return (len);
+	while ((n = n / 10))
+		len++;
+	return (len);
 }
 
-t_spec	parse_specs(const char **s, va_list ap)
+char			*convert_u(unsigned int n)
 {
-	t_spec spec;
+	char			*s;
+	int				i;
+	size_t			len;
 
-	spec = init_spec();
-	spec = set_flag(spec, s);
-	spec = set_width(spec, s, ap);
-	spec = set_precision(spec, s, ap);
-	spec = set_specifier(spec, s);
-	return (spec);
+	i = 0;
+	len = get_nb_len(n);
+	s = malloc(sizeof(*s) * (len + 1));
+	if (!s)
+		return (NULL);
+	s[0] = '0';
+	s[len] = 0;
+	while (n)
+	{
+		s[--len] = n % 10 + '0';
+		n = n / 10;
+	}
+	return (s);
 }
+
