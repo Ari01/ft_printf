@@ -25,29 +25,33 @@ OBJS = $(SRC:.c=.o)
 BONUSOBJS = $(BONUSSRC:.c=.o)
 NAME = libftprintf.a
 BONUS = bonus
+
 RM = rm -Rf
 CC = clang
+LIB = ar cr
 CFLAGS = -Wall -Wextra -Werror
 LFLAGS = -L libft -lft
 INCLUDE = -I libft
-LIB = ar cr
+
+LFTOBJS = $(LIBFTDIR)/*.o 
 LIBFT = libft
+LIBFTDIR = libft
 
 # RULES
 
 all :		$(NAME)
 
-$(LIBFT) :
-			cd $@ && $(MAKE) bonus
-
 $(NAME) :	$(OBJS) $(LIBFT)
 			$(LIB) $@ $(OBJS)
 
-$(BONUS) :	$(BONUSOBJS) $(LIBFT)
-			$(LIB) $(NAME) $(BONUSOBJS)
+$(BONUS) :	$(LIBFT) $(BONUSOBJS)
+			$(LIB) $(NAME) $(BONUSOBJS) $(LFTOBJS)
+
+$(LIBFT) :
+			cd $(LIBFTDIR) && $(MAKE) bonus
 
 .c.o :		
-			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) $(INCLUDE)
+			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 clean :
 			cd $(LIBFT) && $(MAKE) clean && cd .. && $(RM) $(OBJS) $(BONUSOBJS)
