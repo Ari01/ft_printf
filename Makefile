@@ -42,7 +42,7 @@ LIBFTDIR = libft
 all :		$(NAME)
 
 $(NAME) :	$(OBJS) $(LIBFT)
-			$(LIB) $@ $(OBJS)
+			$(LIB) $@ $(OBJS) $(LFTOBJS)
 
 $(BONUS) :	$(LIBFT) $(BONUSOBJS)
 			$(LIB) $(NAME) $(BONUSOBJS) $(LFTOBJS)
