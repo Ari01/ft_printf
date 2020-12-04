@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 12:23:05 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 12:55:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,12 @@ int				print_int(t_spec spec, char *arg)
 	char    *zero;
 	char    *space;
 	char	*free;
-	int		arglen;
 	int		res;
 
 	free = arg;
-	res = get_zero_space(spec, &zero, &space, arg);
+	res = get_zero_space(spec, &zero, &space, arg) + ft_strlen(arg);
 	if (!arg || !zero || !space)
 		return 0;
-	arglen = ft_strlen(arg);
 	if (spec.minus < 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
 	if (*arg == '-')
@@ -81,6 +79,8 @@ int				print_int(t_spec spec, char *arg)
 		ft_putchar_fd('-', STDOUT_FILENO);
 		arg++;
 	}
+	else if (spec.space > 0)
+		ft_putchar_fd(' ', STDOUT_FILENO);
 	ft_putstr_fd(zero, STDOUT_FILENO);
 	if (ft_atoi(arg) || spec.precision)
 		ft_putstr_fd(arg, STDOUT_FILENO);

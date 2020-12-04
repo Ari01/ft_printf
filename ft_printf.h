@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 14:16:34 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 12:33:20 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 12:44:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct	s_spec
 {
 	int			minus;
 	int			zero;
+	int			space;
 	int			width;
 	int			precision;
 	int			specifier;

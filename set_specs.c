@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 06:27:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 11:22:03 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 12:45:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_spec	set_flag(t_spec spec, const char **s)
 {	
 	while (ft_is_in_charset(**s, FLAG_CHARSET))
 	{
+		if (**s == ' ')
+			spec.space = 1;
 		if (**s == '0')
 			spec.zero = 1;
 		if (**s == '-')
