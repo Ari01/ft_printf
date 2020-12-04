@@ -5,6 +5,7 @@ ft_printf.c \
 parse_specs.c \
 print_adress.c \
 print_int.c \
+print_char.c \
 print_string.c \
 set_specs.c
 

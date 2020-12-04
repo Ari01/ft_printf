@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 16:42:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 07:07:30 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 07:21:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			print_string(t_spec spec, const char *s)
 	else
 		len = ft_strlen(s);
 	nspace = get_nspace(spec, len);
-	if (npace)
+	if (nspace)
 	{
 		space = ft_strnew(' ', nspace);
 		if (!space)

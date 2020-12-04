@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 06:54:37 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 07:34:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char			 *ft_strnew(char c, size_t len)
 	if (!zero)
 		return (NULL);
 	ft_memset(zero, c, len);
-	zero[i] = 0;
+	zero[len] = 0;
 	return (zero);
 }
 
