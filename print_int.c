@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 13:43:26 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 16:13:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int				get_zero_space(t_spec spec, char **zero, char **space, char *arg)
 	nspace = get_nspaces(spec, arg, nzero);
 	*zero = ft_strnew('0', nzero);
 	*space = ft_strnew(' ', nspace);
-	return (nzero + nspace + ft_strlen(arg));
+	return (nzero + nspace);
 }
 
-void			print_sign(t_spec spec, char **arg)
+int				print_sign(t_spec spec, char **arg)
 {
 	int number;
 
@@ -61,8 +61,10 @@ void			print_sign(t_spec spec, char **arg)
 		{
 			ft_putchar_fd('-', STDOUT_FILENO);
 			*arg += 1;
+			return (1);
 		}
 	}
+	return (0);
 }
 
 int				print_int(t_spec spec, char *arg)
@@ -73,15 +75,18 @@ int				print_int(t_spec spec, char *arg)
 	int		res;
 
 	freeptr = arg;
-	res = get_zero_space(spec, &zero, &space, arg) + ft_strlen(arg);
+	res = get_zero_space(spec, &zero, &space, arg);
 	if (!arg || !zero || !space)
 		return 0;
 	if (spec.minus < 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
-	print_sign(spec, &arg);
+	res += print_sign(spec, &arg);
 	ft_putstr_fd(zero, STDOUT_FILENO);
 	if (ft_atoi(arg) || spec.precision)
+	{
 		ft_putstr_fd(arg, STDOUT_FILENO);
+		res += ft_strlen(arg);
+	}
 	if (spec.minus > 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
 	free (freeptr);

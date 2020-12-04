@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 17:00:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 11:43:16 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 16:14:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	freeptrs(char *s, char *space)
 	space = NULL;
 }
 
-#include <stdio.h>
 int			print_adress(t_spec spec, void *adr)
 {
 	unsigned long int	n;

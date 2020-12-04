@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 08:29:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 09:06:00 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 16:07:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int		ft_printf(const char *s, ...)
 		tmp = s;
 		while (*tmp && *tmp != '%')
 			tmp++;
-		nbytes_written += strlprint(s, tmp - s);
+		if (tmp != s)
+			nbytes_written += strlprint(s, tmp - s + 1);
 		s = tmp;
 		if (*s == '%')
 		{
