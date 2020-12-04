@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 13:26:17 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 13:29:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void			print_sign(t_spec spec, char **arg)
 	int number;
 
 	number = ft_atoi(*arg);
-	if (spec.specification == 'd' || spec.specification == 'i')
+	if (spec.specifier == 'd' || spec.specifier == 'i')
 	{
 		if (**arg == '-')
 		{
@@ -69,9 +69,9 @@ void			print_sign(t_spec spec, char **arg)
 	}
 	else if (spec.hash > 0)
 	{
-		if (spec.specification == 'x' && number)
+		if (spec.specifier == 'x' && number)
 			ft_putstr_fd("0x", STDOUT_FILENO);
-		else if (spec.specification == 'X' && number)
+		else if (spec.specifier == 'X' && number)
 			ft_putstr_fd("0X", STDOUT_FILENO);
 	}
 }
@@ -80,10 +80,10 @@ int				print_int(t_spec spec, char *arg)
 {
 	char    *zero;
 	char    *space;
-	char	*free;
+	char	*freeptr;
 	int		res;
 
-	free = arg;
+	freeptr = arg;
 	res = get_zero_space(spec, &zero, &space, arg) + ft_strlen(arg);
 	if (!arg || !zero || !space)
 		return 0;
@@ -95,7 +95,7 @@ int				print_int(t_spec spec, char *arg)
 		ft_putstr_fd(arg, STDOUT_FILENO);
 	if (spec.minus > 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
-	free (s);
+	free (freeptr);
 	free (zero);
 	free (space);
 	return (res);
