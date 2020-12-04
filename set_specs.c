@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 06:27:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 07:42:13 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 09:28:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,17 @@ int		ft_is_in_charset(const char c, const char *charset)
 }
 
 t_spec	set_flag(t_spec spec, const char **s)
-{
-	if (**s == '0')
-		spec.zero = 1;
-	if (**s == '-')
-		spec.minus = 1;
+{	
 	while (ft_is_in_charset(**s, FLAG_CHARSET))
+	{
+		if (**s == '0')
+			spec.zero = 1;
+		if (**s == '-')
+			spec.minus = 1;
 		*s += 1;
+	}
+	if (spec.minus > 0)
+		spec.zero = -1;
 	return (spec);
 }
 
