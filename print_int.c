@@ -6,23 +6,11 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 07:34:23 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 09:24:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-char			 *ft_strnew(char c, size_t len)
-{
-	char    *zero;
-
-	zero = malloc(sizeof(*zero) * (len + 1));
-	if (!zero)
-		return (NULL);
-	ft_memset(zero, c, len);
-	zero[len] = 0;
-	return (zero);
-}
 
 static size_t	get_nzeros(t_spec spec, char *arg)
 {
@@ -42,8 +30,25 @@ size_t			get_nspaces(t_spec spec, char *arg, int nzero)
 
 	nblen = ft_strlen(arg);
 	if (spec.width > nblen && spec.width > nzero)
-		return (spec.width - nblen - nzero);
+	{
+		if (*arg == '-')
+			return (spec.width - nblen - nzero - 1);
+		else
+			return (spec.width - nblen - nzero);
+	}
 	return (0);
+}
+
+int				get_zero_space(t_spec spec, char **zero, char **space, char *arg)
+{
+	int	nzero;
+	int	nspace;
+
+	nzero = get_nzeros(spec, arg);
+	nspace = get_nspaces(spec, arg, nzero);
+	*zero = ft_strnew('0', nzero);
+	*space = ft_strnew(' ', nspace);
+	return (nzero + nspace + ft_strlen(arg));
 }
 
 void			freeptrs(char *s, char *zero, char *space)
@@ -60,28 +65,27 @@ int				print_int(t_spec spec, char *arg)
 {
 	char    *zero;
 	char    *space;
-	int		nzero;
-	int		nspace;
 	int		arglen;
+	int		res;
 
 	zero = NULL;
 	space = NULL;
-	if (!arg)
+	res = get_zero_space(spec, &zero, &space, arg);
+	if (!arg || !zero || !space)
 		return 0;
 	arglen = ft_strlen(arg);
-	nzero = get_nzeros(spec, arg);
-	nspace = get_nspaces(spec, arg, nzero);
-	zero = ft_strnew('0', nzero);
-	space = ft_strnew(' ', nspace);
-	if (!zero || !space)
-		return 0;
 	if (spec.minus < 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
+	if (*arg == '-')
+	{
+		ft_putchar_fd('-', STDOUT_FILENO);
+		arg++;
+	}
 	ft_putstr_fd(zero, STDOUT_FILENO);
 	if (arg || spec.precision)
 		ft_putstr_fd(arg, STDOUT_FILENO);
 	if (spec.minus > 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
 	freeptrs(arg, zero, space);
-	return (nspace + nzero + arglen);
+	return (res);
 }

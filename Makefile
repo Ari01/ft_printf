@@ -2,6 +2,7 @@
 SRC = convert_base.c \
 convert_u.c \
 ft_printf.c \
+ft_printf_utils.c \
 parse_specs.c \
 print_adress.c \
 print_int.c \
