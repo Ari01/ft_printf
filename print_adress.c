@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 17:00:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 08:10:50 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 10:59:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ int		print_adress(t_spec spec, void *adr)
 	}
 	if (nspace && spec.minus < 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
-	ft_putstr_fd("0x", STDOUT_FILENO);
-	nbytes_written += print_int(spec, s) + 2;
+	nbytes_written += print_int(spec, s);
 	if (nspace && spec.minus > 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
 	return (nbytes_written + nspace);
