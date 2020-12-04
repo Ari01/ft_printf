@@ -41,10 +41,10 @@ $(LIBFT) :
 			cd $@ && $(MAKE) bonus
 
 $(NAME) :	$(OBJS) $(LIBFT)
-			$(LIB) $@ $<
+			$(LIB) $@ $(OBJS)
 
 $(BONUS) :	$(BONUSOBJS) $(LIBFT)
-			$(LIB) $(NAME) $<
+			$(LIB) $(NAME) $(BONUSOBJS)
 
 .c.o :		
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) $(INCLUDE)
