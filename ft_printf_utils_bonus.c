@@ -1,47 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_u_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_printf_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/03 14:10:55 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 14:02:24 by user42           ###   ########.fr       */
+/*   Created: 2020/12/04 09:08:37 by user42            #+#    #+#             */
+/*   Updated: 2020/12/04 14:03:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-static size_t	get_nb_len(unsigned int n)
+char	*ft_strnew(char c, size_t len)
 {
-	size_t len;
+	char    *zero;
 
-	len = 1;
-	if (n < 10)
-		return (len);
-	while ((n = n / 10))
-		len++;
-	return (len);
-}
-
-char			*convert_u(unsigned int n)
-{
-	char			*s;
-	int				i;
-	size_t			len;
-
-	i = 0;
-	len = get_nb_len(n);
-	s = malloc(sizeof(*s) * (len + 1));
-	if (!s)
+	zero = malloc(sizeof(*zero) * (len + 1));
+	if (!zero)
 		return (NULL);
-	s[0] = '0';
-	s[len] = 0;
-	while (n)
-	{
-		s[--len] = n % 10 + '0';
-		n = n / 10;
-	}
-	return (s);
+	ft_memset(zero, c, len);
+	zero[len] = 0;
+	return (zero);
 }
-
