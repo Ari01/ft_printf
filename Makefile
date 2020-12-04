@@ -37,7 +37,7 @@ clean :
 			$(RM) $(OBJS)
 
 fclean :	clean
-			$(RM) $(NAME)
+			cd libft && make fclean && cd .. && $(RM) $(NAME)
 
 re :		clean fclean all
 
