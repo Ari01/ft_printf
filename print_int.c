@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 11:56:06 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 12:03:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void			freeptrs(char *s, char *zero, char *space)
 	space = NULL;
 }
 
+#include <stdio.h>
 int				print_int(t_spec spec, char *arg)
 {
 	char    *zero;
@@ -79,7 +80,7 @@ int				print_int(t_spec spec, char *arg)
 		arg++;
 	}
 	ft_putstr_fd(zero, STDOUT_FILENO);
-	if (arg || spec.precision)
+	if (ft_atoi(arg) || spec.precision)
 		ft_putstr_fd(arg, STDOUT_FILENO);
 	if (spec.minus > 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
