@@ -6,37 +6,48 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 17:00:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 10:59:57 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 11:43:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		print_adress(t_spec spec, void *adr)
+static void	freeptrs(char *s, char *space)
+{
+	free(s);
+	free(space);
+	s = NULL;
+	space = NULL;
+}
+
+#include <stdio.h>
+int			print_adress(t_spec spec, void *adr)
 {
 	unsigned long int	n;
 	char				*s;
 	char				*space;
 	int					nspace;
-	int					nbytes_written;
+	int					slen;
 
-	nbytes_written = 0;
 	nspace = 0;
+	space = NULL;
 	n = (unsigned long int)adr;
 	s = ft_strjoin("0x", convert_base(n, "0123456789abcdef"));
 	if (!s)
 		return (0);
-	if (spec.width > (int)ft_strlen(s))
+	slen = ft_strlen(s);
+	if (spec.width > slen)
 	{
 		nspace = spec.width - ft_strlen(s);
 		space = ft_strnew(' ', nspace);
 		if (!space)
 			return (0);
 	}
-	if (nspace && spec.minus < 0)
+	if (space && spec.minus < 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
-	nbytes_written += print_int(spec, s);
-	if (nspace && spec.minus > 0)
+	ft_putstr_fd(s, STDOUT_FILENO);
+	if (space && spec.minus > 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
-	return (nbytes_written + nspace);
+	freeptrs(s, space);
+	return (slen + nspace);
 }

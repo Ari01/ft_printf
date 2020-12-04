@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 07:26:25 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 09:36:24 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/04 11:44:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,12 +178,15 @@ int main(void)
 	printf("%p\n", t);
 	ft_printf("%p\n\n", t);
 
+	printf("%5p\n", NULL);
+	ft_printf("%5p\n", NULL);
+
 	printf("n = %d ", printf("%p\n", s2));
 	printf("n = %d ", ft_printf("%p\n", s2));
 
 	printf("\n--------------------- %% ---------------------------\n");
-	printf("%5%\n");
-	ft_printf("%5%\n\n");
+	printf("%05%\n");
+	ft_printf("%05%\n");
 
 	return (0);
 }
