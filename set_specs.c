@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 06:27:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 08:52:16 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 12:27:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_spec	set_precision(t_spec spec, const char **s, va_list ap)
 		}
 		else
 			spec.precision = 0;
+		spec.zero = -1;
 	}
 	return (spec);
 }

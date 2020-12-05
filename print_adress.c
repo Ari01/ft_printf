@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 17:00:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 12:15:09 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 12:28:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			get_nzero(t_spec spec, char *s)
 
 	nzero = 0;
 	slen = ft_strlen(s);
-	if (spec.zero > 0 || (spec.precision > spec.width))
+	if (spec.zero > 0 || spec.precision)
 	{
 		if (spec.precision > spec.width)
 			nzero = spec.precision - slen;
