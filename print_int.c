@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 16:13:34 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 14:43:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ size_t			get_nspaces(t_spec spec, char *arg, int nzero)
 	return (0);
 }
 
-int				get_zero_space(t_spec spec, char **zero, char **space, char *arg)
+int				get_zero_space(t_spec spec,
+								char **zero,
+								char **space,
+								char *arg)
 {
 	int	nzero;
 	int	nspace;
@@ -69,15 +72,15 @@ int				print_sign(t_spec spec, char **arg)
 
 int				print_int(t_spec spec, char *arg)
 {
-	char    *zero;
-	char    *space;
+	char	*zero;
+	char	*space;
 	char	*freeptr;
 	int		res;
 
 	freeptr = arg;
 	res = get_zero_space(spec, &zero, &space, arg);
 	if (!arg || !zero || !space)
-		return 0;
+		return (0);
 	if (spec.minus < 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
 	res += print_sign(spec, &arg);
@@ -89,8 +92,8 @@ int				print_int(t_spec spec, char *arg)
 	}
 	if (spec.minus > 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
-	free (freeptr);
-	free (zero);
-	free (space);
+	free(freeptr);
+	free(zero);
+	free(space);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 17:00:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 13:42:05 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 14:41:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,11 @@ char		*set_prefix_zero(t_spec spec, char *s)
 	char	*res;
 	int		nzero;
 
-	nzero = get_nzero(spec, s);
 	res = ft_strdup("0x");
 	freeptr = res;
 	if (ft_atoi(s) || spec.precision)
 	{
-		if (nzero > 0)
+		if ((nzero = get_nzero(spec, s)) > 0)
 		{
 			if (!(zero = ft_strnew('0', nzero)))
 				return (NULL);
@@ -82,11 +81,13 @@ int			print_adress(t_spec spec, void *adr)
 {
 	char	*s;
 	char	*space;
+	char	*n;
 	int		nbytes_written;
 	int		slen;
 
 	space = NULL;
-	s = set_prefix_zero(spec, convert_base((unsigned long int)(adr), "0123456789abcdef"));	
+	n = convert_base((unsigned long int)(adr), "0123456789abcdef");
+	s = set_prefix_zero(spec, n);
 	if (!s)
 		return (0);
 	slen = ft_strlen(s);

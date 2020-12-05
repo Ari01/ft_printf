@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 09:08:37 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 09:09:23 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 14:34:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strnew(char c, size_t len)
 {
-	char    *zero;
+	char *zero;
 
 	zero = malloc(sizeof(*zero) * (len + 1));
 	if (!zero)

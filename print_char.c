@@ -6,19 +6,19 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 06:34:06 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 09:47:53 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 14:41:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		print_space_zero(char *sz)
+int			print_space_zero(char *sz)
 {
 	ft_putstr_fd(sz, STDOUT_FILENO);
 	return (ft_strlen(sz));
 }
 
-int		print_all(t_spec spec, char *space, char *zero, unsigned char c)
+int			print_all(t_spec spec, char *space, char *zero, unsigned char c)
 {
 	int nbytes_written;
 
@@ -42,7 +42,7 @@ static void	freeptrs(char *space, char *zero)
 	zero = NULL;
 }
 
-int		print_char(t_spec spec, unsigned char c)
+int			print_char(t_spec spec, unsigned char c)
 {
 	char	*space;
 	char	*zero;

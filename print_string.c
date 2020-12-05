@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 16:42:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 14:16:16 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 14:43:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char		*get_zero(t_spec spec, int slen)
 	zero = ft_strdup("");
 	if (spec.zero > 0 && spec.width > slen)
 	{
-		zero  = ft_strnew('0', spec.width - slen);
+		zero = ft_strnew('0', spec.width - slen);
 		if (!zero)
 			return (NULL);
 	}

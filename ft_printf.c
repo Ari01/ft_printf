@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 08:29:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 10:30:51 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 14:34:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,21 @@ ssize_t	strlprint(const char *s, size_t len)
 ssize_t	print_arg(const char **s, va_list ap)
 {
 	t_spec	spec;
+	char	*arg;
 
 	spec = parse_specs(s, ap);
 	if (spec.specifier == 'd' || spec.specifier == 'i')
 		return (print_int(spec, ft_itoa(va_arg(ap, int))));
 	if (spec.specifier == 'u')
 		return (print_int(spec, convert_u(va_arg(ap, unsigned int))));
-	if (spec.specifier == 'x')
-		return (print_int(spec, convert_base(va_arg(ap, unsigned int), "0123456789abcdef")));
-	if (spec.specifier == 'X')
-		return (print_int(spec, convert_base(va_arg(ap, unsigned int), "0123456789ABCDEF")));
+	if (spec.specifier == 'x' || spec.specifier == 'X')
+	{
+		if (spec.specifier == 'x')
+			arg = convert_base(va_arg(ap, unsigned int), "0123456789abcdef");
+		else
+			arg = convert_base(va_arg(ap, unsigned int), "0123456789ABCDEF");
+		return (print_int(spec, arg));
+	}
 	if (spec.specifier == '%')
 		return (print_char(spec, (unsigned char)('%')));
 	if (spec.specifier == 'c')
@@ -40,8 +45,6 @@ ssize_t	print_arg(const char **s, va_list ap)
 		return (print_adress(spec, va_arg(ap, void *)));
 	return (0);
 }
-
-int		ft_printf(const char *s, ...) __attribute__((format(printf, 1, 2)));
 
 int		ft_printf(const char *s, ...)
 {
