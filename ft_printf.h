@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 14:16:34 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 08:53:48 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 13:02:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define FLAG_CHARSET "-0"
 # define SPECIFIER_CHARSET "cspdiuxX%"
-# define INT_SPECIFIER_CHARSET "diuxX"
+# define INT_SPECIFIER_CHARSET "diuxXp"
 
 typedef struct	s_spec
 {
