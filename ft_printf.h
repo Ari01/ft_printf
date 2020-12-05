@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 14:16:34 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 15:51:34 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 08:53:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # define FLAG_CHARSET "-0"
 # define SPECIFIER_CHARSET "cspdiuxX%"
+# define INT_SPECIFIER_CHARSET "diuxX"
 
 typedef struct	s_spec
 {
@@ -31,6 +32,7 @@ typedef struct	s_spec
 }				t_spec;
 
 char		   *ft_strnew(char c, size_t len);
+int				ft_is_in_charset(const char c, const char *charset);
 
 t_spec			set_flag(t_spec spec, const char **s);
 t_spec			set_width(t_spec spec, const char **s, va_list ap);

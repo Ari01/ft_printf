@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 04:58:26 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 13:44:36 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 08:51:33 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,10 @@ t_spec	parse_specs(const char **s, va_list ap)
 	spec = set_width(spec, s, ap);
 	spec = set_precision(spec, s, ap);
 	spec = set_specifier(spec, s);
+	if (ft_is_in_charset(spec.specifier, INT_SPECIFIER_CHARSET))
+	{
+		if (spec.precision >= 0)
+			spec.zero = -1;
+	}
 	return (spec);
 }

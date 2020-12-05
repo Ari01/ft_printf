@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 07:26:25 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 08:37:45 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 08:41:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,8 +206,15 @@ int main(void)
 	ft_printf("%% *.5i 42 == |% *.5i|\n", 4, 42);
 
 	printf("\n--------------------- weird stuff -------------------\n");
-	printf("n = %d\n", printf("|%-0*.*%|\n", 15, 6));
+	printf("n = %d\n", printf("%-0*.*%", 15, 6));
+	printf("\n");
 	printf("ftn = %d\n", ft_printf("%-0*.*%", 15, 6, (NULL)));
+	printf("\n\n");
+
+	printf("n = %d\n", printf("%0*.*%", 15, 6));
+	printf("\n");
+	printf("ftn = %d\n", ft_printf("%0*.*%", 15, 6, (NULL)));
+	printf("\n\n");
 
 
 	return (0);
