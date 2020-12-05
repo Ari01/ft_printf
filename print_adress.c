@@ -6,56 +6,41 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 17:00:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 10:51:16 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 11:21:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		freeptrs(char *space, char *zero, char *s)
+void		freeptrs(char *s, char *space)
 {
 	free(space);
-	free(zero);
 	free(s);
 	space = NULL;
-	zero = NULL;
 	s = NULL;
 }
 
-int			set_space_zero(t_spec spec, char **space, char **zero, int slen)
-{
-	int size;
-
-	size = spec.width - slen;
-	if (size > 0)
-	{
-		if (spec.zero > 0)
-		{
-			*zero = ft_strnew('0', size);
-			if (!*zero)
-				return (0);
-		}
-		else
-		{
-			*space = ft_strnew(' ', size);
-			if (!*space)
-				return (0);
-		}
-	}
-	return (1);
-}
-
-char		*set_string(char *s, char *zero)
+char		*set_prefix_zero(t_spec spec, unsigned long int adr)
 {
 	char	*freeptr;
 	char	*tmp;
+	char	*zero;
+	char	*s;
+	int		size;
 
+	s = convert_base(adr, "0123456789abcdef");
 	freeptr = s;
-	if (zero)
+	size = ft_strlen(s) + 2;
+	if (spec.zero > 0 && spec.width > size)
 	{
-		tmp = ft_strjoin("0x", zero);
-		s = ft_strjoin(tmp, s);
+		if (!(zero = ft_strnew('0', spec.width - size)))
+			return (NULL);
+		if (!(tmp = ft_strjoin("0x", zero)))
+			return (NULL);
+		if (!(s = ft_strjoin(tmp, s)))
+			return (NULL);
 		free(tmp);
+		free(zero);
 	}
 	else
 		s = ft_strjoin("0x", s);
@@ -63,7 +48,7 @@ char		*set_string(char *s, char *zero)
 	return (s);
 }
 
-static int	print_all(t_spec spec, char *s, char *zero, char *space)
+static int	print_all(t_spec spec, char *s, char *space)
 {
 	int		nbytes_written;
 
@@ -73,27 +58,28 @@ static int	print_all(t_spec spec, char *s, char *zero, char *space)
 	nbytes_written += strlprint(s, ft_strlen(s));
 	if (space && spec.minus > 0)
 		nbytes_written += strlprint(space, ft_strlen(space));
-	freeptrs(space, zero, s);
+	freeptrs(s, space);
 	return (nbytes_written);
 }
 
 int			print_adress(t_spec spec, void *adr)
 {
-	char				*s;
-	char				*space;
-	char				*zero;
-	int					nbytes_written;
-	int					slen;
+	char	*s;
+	char	*space;
+	int		nbytes_written;
+	int		slen;
 
 	space = NULL;
-	zero = NULL;
-	s = convert_base((unsigned long int)adr, "0123456789abcdef");
+	s = set_prefix_zero(spec, (unsigned long int)(adr));	
 	if (!s)
 		return (0);
 	slen = ft_strlen(s);
-	if (!set_space_zero(spec, &space, &zero, slen))
-		return (0);
-	s = set_string(s, zero);	
-	nbytes_written = print_all(spec, s, zero, space);
+	if (spec.width > slen && spec.zero < 0)
+	{
+		space = ft_strnew(' ', spec.width - slen);
+		if (!space)
+			return (0);
+	}
+	nbytes_written = print_all(spec, s, space);
 	return (nbytes_written);
 }
