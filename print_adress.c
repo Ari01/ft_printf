@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 17:00:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 13:39:00 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 13:42:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char		*set_prefix_zero(t_spec spec, char *s)
 	nzero = get_nzero(spec, s);
 	res = ft_strdup("0x");
 	freeptr = res;
-	if (ft_atoi(s) && spec.precision)
+	if (ft_atoi(s) || spec.precision)
 	{
 		if (nzero > 0)
 		{
