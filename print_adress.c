@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 17:00:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 13:25:38 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 13:39:00 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,34 @@ int			get_nzero(t_spec spec, char *s)
 	return (nzero);
 }
 
-char		*set_prefix_zero(t_spec spec, unsigned long int adr)
+char		*set_prefix_zero(t_spec spec, char *s)
 {
 	char	*freeptr;
 	char	*tmp;
 	char	*zero;
-	char	*s;
+	char	*res;
 	int		nzero;
 
-	s = convert_base(adr, "0123456789abcdef");
-	freeptr = s;
 	nzero = get_nzero(spec, s);
-	if (nzero > 0)
+	res = ft_strdup("0x");
+	freeptr = res;
+	if (ft_atoi(s) && spec.precision)
 	{
-		if (!(zero = ft_strnew('0', nzero)))
-			return (NULL);
-		if (!(tmp = ft_strjoin("0x", zero)))
-			return (NULL);
-		if (!(s = ft_strjoin(tmp, s)))
-			return (NULL);
-		free(tmp);
-		free(zero);
+		if (nzero > 0)
+		{
+			if (!(zero = ft_strnew('0', nzero)))
+				return (NULL);
+			if (!(tmp = ft_strjoin(res, zero)))
+				return (NULL);
+			if (!(res = ft_strjoin(tmp, s)))
+				return (NULL);
+			freeptrs(tmp, zero);
+		}
+		else
+			res = ft_strjoin(res, s);
+		free(freeptr);
 	}
-	else
-		s = ft_strjoin("0x", s);
-	free(freeptr);
-	return (s);
+	return (res);
 }
 
 static int	print_all(t_spec spec, char *s, char *space)
@@ -84,7 +86,7 @@ int			print_adress(t_spec spec, void *adr)
 	int		slen;
 
 	space = NULL;
-	s = set_prefix_zero(spec, (unsigned long int)(adr));	
+	s = set_prefix_zero(spec, convert_base((unsigned long int)(adr), "0123456789abcdef"));	
 	if (!s)
 		return (0);
 	slen = ft_strlen(s);
