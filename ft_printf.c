@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 08:29:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 16:07:58 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 08:34:00 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ ssize_t	print_arg(const char **s, va_list ap)
 	if (spec.specifier == 'X')
 		return (print_int(spec, convert_base(va_arg(ap, unsigned int), "0123456789ABCDEF")));
 	if (spec.specifier == '%')
-		return (print_int(spec, ft_strdup("%")));
+		return (print_char(spec, (unsigned char)'%'));
 	if (spec.specifier == 'c')
 		return (print_char(spec, (unsigned char)va_arg(ap, int)));
 	if (spec.specifier == 's')
@@ -56,8 +56,7 @@ int		ft_printf(const char *s, ...)
 		tmp = s;
 		while (*tmp && *tmp != '%')
 			tmp++;
-		if (tmp != s)
-			nbytes_written += strlprint(s, tmp - s + 1);
+		nbytes_written += strlprint(s, tmp - s);
 		s = tmp;
 		if (*s == '%')
 		{
