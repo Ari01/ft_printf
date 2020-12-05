@@ -6,38 +6,66 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 06:34:06 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 07:23:31 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 09:47:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		print_char(t_spec spec, unsigned char c)
+int		print_space_zero(char *sz)
 {
-	char	*space;
-	int		nbytes_written;
+	ft_putstr_fd(sz, STDOUT_FILENO);
+	return (ft_strlen(sz));
+}
 
-	space = NULL;
+int		print_all(t_spec spec, char *space, char *zero, unsigned char c)
+{
+	int nbytes_written;
+
 	nbytes_written = 0;
-	if (spec.width > 1)
-	{
-		space = ft_strnew(' ', spec.width - 1);
-		if (!space)
-			return (0);
-		if (spec.minus < 0)
-		{
-			ft_putstr_fd(space, STDOUT_FILENO);
-			nbytes_written += ft_strlen(space);
-		}
-	}
+	if (space && spec.minus < 0)
+		nbytes_written += print_space_zero(space);
+	if (zero)
+		nbytes_written += print_space_zero(zero);
 	ft_putchar_fd(c, STDOUT_FILENO);
 	nbytes_written++;
 	if (space && spec.minus > 0)
-	{
-		ft_putstr_fd(space, STDOUT_FILENO);
-		nbytes_written += ft_strlen(space);
-	}
+		nbytes_written += print_space_zero(space);
+	return (nbytes_written);
+}
+
+static void	freeptrs(char *space, char *zero)
+{
 	free(space);
+	free(zero);
 	space = NULL;
+	zero = NULL;
+}
+
+int		print_char(t_spec spec, unsigned char c)
+{
+	char	*space;
+	char	*zero;
+	int		nbytes_written;
+
+	space = NULL;
+	zero = NULL;
+	if (spec.width > 1)
+	{
+		if (spec.zero > 0)
+		{
+			zero = ft_strnew('0', spec.width - 1);
+			if (!zero)
+				return (0);
+		}
+		else
+		{
+			space = ft_strnew(' ', spec.width - 1);
+			if (!space)
+				return (0);
+		}
+	}
+	nbytes_written = print_all(spec, space, zero, c);
+	freeptrs(space, zero);
 	return (nbytes_written);
 }
