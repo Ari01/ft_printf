@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 17:00:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 11:53:50 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 11:55:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char		*set_prefix_zero(t_spec spec, unsigned long int adr)
 	nzero = get_nzero(spec, s);
 	if (nzero > 0)
 	{
-		if (!(zero = ft_strnew('0', size)))
+		if (!(zero = ft_strnew('0', nzero)))
 			return (NULL);
 		if (!(tmp = ft_strjoin("0x", zero)))
 			return (NULL);
