@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 17:00:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 13:08:12 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 13:11:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ int			get_nzero(t_spec spec, char *s)
 	{
 		if (spec.precision > spec.width)
 			nzero = spec.precision - slen;
-		else
-			nzero = spec.width - slen - 2;
 	}
 	return (nzero);
 }
