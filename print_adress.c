@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 17:00:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 11:29:49 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 11:53:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,35 @@ void		freeptrs(char *s, char *space)
 	s = NULL;
 }
 
+int			get_nzero(t_spec spec, char *s)
+{
+	int nzero;
+	int slen;
+
+	nzero = 0;
+	slen = ft_strlen(s) + 2;
+	if (spec.zero > 0)
+	{
+		if (spec.precision > spec.width)
+			nzero = spec.precision - slen;
+		else
+			nzero = spec.width - slen;
+	}
+	return (nzero);
+}
+
 char		*set_prefix_zero(t_spec spec, unsigned long int adr)
 {
 	char	*freeptr;
 	char	*tmp;
 	char	*zero;
 	char	*s;
-	int		size;
+	int		nzero;
 
 	s = convert_base(adr, "0123456789abcdef");
 	freeptr = s;
-	size = 0;
-	if (spec.precision > spec.width)
-		size = spec.precision - ft_strlen(s) - 2;
-	else
-		size = spec.width - ft_strlen(s) - 2;
-	if (size > 0)
+	nzero = get_nzero(spec, s);
+	if (nzero > 0)
 	{
 		if (!(zero = ft_strnew('0', size)))
 			return (NULL);
