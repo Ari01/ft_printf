@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/06 09:46:53 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/06 10:57:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	print_sign(t_spec spec, char **arg)
 			ft_putchar_fd(c, STDOUT_FILENO);
 			return (1);
 		}
+		return (0);
 	}
 	return (print_0x(spec, *arg));
 }
