@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/06 06:58:20 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/06 07:44:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ int				get_zero_space(t_spec spec,
 
 int				print_sign(t_spec spec, char **arg)
 {
-	int number;
-
-	number = ft_atoi(*arg);
 	if (spec.specifier == 'd' || spec.specifier == 'i')
 	{
 		if (**arg == '-')
@@ -72,7 +69,6 @@ int				print_sign(t_spec spec, char **arg)
 	return (0);
 }
 
-#include <stdio.h>
 int				print_int(t_spec spec, char *arg)
 {
 	char	*zero;

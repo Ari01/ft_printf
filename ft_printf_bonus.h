@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 14:16:34 by user42            #+#    #+#             */
-/*   Updated: 2020/12/06 07:20:40 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/06 09:40:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define FLAG_CHARSET "-0"
+# define FLAG_CHARSET "-0+ #"
 # define SPECIFIER_CHARSET "cspdiuxX%"
 # define INT_SPECIFIER_CHARSET "diuxXp"
 
@@ -26,6 +26,9 @@ struct	s_spec
 {
 	int	minus;
 	int	zero;
+	int plus;
+	int space;
+	int hash;
 	int	width;
 	int	precision;
 	int	specifier;
@@ -44,6 +47,8 @@ t_spec	parse_specs(const char **s, va_list ap);
 
 char	*convert_u(unsigned int n);
 char	*convert_base(unsigned long int n, char *base);
+size_t	get_nzeros(t_spec spec, char *arg);
+size_t	get_nspaces(t_spec spec, char *arg, int nzero);
 
 int		print_int(t_spec spec, char *arg);
 int		print_char(t_spec spec, unsigned char c);

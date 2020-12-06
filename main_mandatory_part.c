@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   main_mandatory_part.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/01 07:26:25 by user42            #+#    #+#             */
-/*   Updated: 2020/12/06 07:21:36 by user42           ###   ########.fr       */
+/*   Created: 2020/12/06 08:26:17 by user42            #+#    #+#             */
+/*   Updated: 2020/12/06 10:00:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdarg.h>
 #include <limits.h>
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 int main(void)
 {
@@ -222,7 +222,6 @@ int main(void)
 	printf("\n");
 	printf("ftn = %d\n", ft_printf("%0*.*%", 15, 6, (NULL)));
 	printf("\n\n");
-
 
 	return (0);
 }

@@ -17,6 +17,7 @@ ft_printf_utils_bonus.c \
 parse_specs_bonus.c \
 print_adress_bonus.c \
 print_int_bonus.c \
+print_int_utils_bonus.c \
 print_char_bonus.c \
 print_string_bonus.c \
 set_specs_bonus.c
