@@ -24,42 +24,54 @@ set_specs_bonus.c
 
 OBJS = $(SRC:.c=.o)
 BONUSOBJS = $(BONUSSRC:.c=.o)
+ALLMAIN = main_bonus_d \
+main_bonus_u \
+main_bonus_x \
+main_bonus_X
+
 NAME = libftprintf.a
 BONUS = bonus
+TEST = test
 
 RM = rm -Rf
 CC = clang
 LIB = ar cr
 CFLAGS = -Wall -Wextra -Werror
-LFLAGS = -L libft -lft
+LFLAGS = -L. -lftprintf
 INCLUDE = -I libft
 
 LFTOBJS = $(LIBFTDIR)/*.o 
 LIBFT = libft
 LIBFTDIR = libft
+LIBFTFLAGS = -L libft -lft
 
 # RULES
 
-all :		$(NAME)
+all :			$(NAME)
 
-$(NAME) :	$(OBJS) $(LIBFT)
-			$(LIB) $@ $(OBJS) $(LFTOBJS)
+$(NAME) :		$(OBJS) $(LIBFT)
+				$(LIB) $@ $(OBJS) $(LFTOBJS)
 
-$(BONUS) :	$(LIBFT) $(BONUSOBJS)
-			$(LIB) $(NAME) $(BONUSOBJS) $(LFTOBJS)
+$(BONUS) :		$(LIBFT) $(BONUSOBJS)
+				$(LIB) $(NAME) $(BONUSOBJS) $(LFTOBJS)
+
+$(TEST) :		$(ALLMAIN)
+
+$(ALLMAIN) :	%: %.c $(BONUS)
+				$(CC) -o $@ $< $(LFLAGS)
 
 $(LIBFT) :
-			cd $(LIBFTDIR) && $(MAKE) bonus
+				cd $(LIBFTDIR) && $(MAKE) bonus
 
 .c.o :		
-			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+				$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 clean :
-			cd $(LIBFT) && $(MAKE) clean && cd .. && $(RM) $(OBJS) $(BONUSOBJS)
+				cd $(LIBFT) && $(MAKE) clean && cd .. && $(RM) $(OBJS) $(BONUSOBJS)
 
-fclean :	clean
-			cd $(LIBFT) && $(MAKE) fclean && cd .. && $(RM) $(NAME)
+fclean :		clean
+				cd $(LIBFT) && $(MAKE) fclean && cd .. && $(RM) $(NAME)
 
-re :		clean fclean all
+re :			clean fclean all
 
-.PHONY :	all clean fclean re libft
+.PHONY :		all clean fclean re libft
