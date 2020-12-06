@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 08:29:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/06 07:20:30 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/06 11:58:03 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ ssize_t	print_arg(const char **s, va_list ap)
 		return (print_int(spec, arg));
 	}
 	if (spec.specifier == '%')
-		return (print_char(spec, (unsigned char)('%')));
+		return (print_char(spec, '%'));
 	if (spec.specifier == 'c')
 		return (print_char(spec, (unsigned char)va_arg(ap, int)));
 	if (spec.specifier == 's')
