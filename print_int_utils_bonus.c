@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 09:38:50 by user42            #+#    #+#             */
-/*   Updated: 2020/12/06 11:25:20 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/06 11:31:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,14 @@ size_t	get_nzeros(t_spec spec, char *arg)
 	c = spec.specifier;
 	nblen = ft_strlen(arg);
 	if (spec.zero > 0 && spec.width > nblen)
+	{
+		if (c == 'd' || c == 'i')
+		{
+			if (*arg != '-' && (spec.plus > 0 || spec.space > 0))
+				nblen++;
+		}
 		return (spec.width - nblen);
+	}
 	if (*arg == '-')
 		nblen--;
 	if (spec.precision > nblen)
