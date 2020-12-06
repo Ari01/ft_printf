@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 14:43:19 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/06 06:41:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int				print_sign(t_spec spec, char **arg)
 	return (0);
 }
 
+#include <stdio.h>
 int				print_int(t_spec spec, char *arg)
 {
 	char	*zero;
@@ -85,7 +86,7 @@ int				print_int(t_spec spec, char *arg)
 		ft_putstr_fd(space, STDOUT_FILENO);
 	res += print_sign(spec, &arg);
 	ft_putstr_fd(zero, STDOUT_FILENO);
-	if (ft_atoi(arg) || spec.precision)
+	if (*arg || spec.precision)
 	{
 		ft_putstr_fd(arg, STDOUT_FILENO);
 		res += ft_strlen(arg);
