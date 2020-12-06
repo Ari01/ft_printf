@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 06:34:06 by user42            #+#    #+#             */
-/*   Updated: 2020/12/06 12:06:45 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/06 12:21:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int			print_all(t_spec spec, char *space, char *zero, unsigned char c)
 
 	nbytes_written = 0;
 	if (space && spec.minus < 0)
-		nbytes_written += strlprint(ft_strlen(space));
+		nbytes_written += strlprint(space, ft_strlen(space));
 	if (zero)
-		nbytes_written += strlprint(ft_strlen(zero));
+		nbytes_written += strlprint(zero, ft_strlen(zero));
 	ft_putchar_fd(c, STDOUT_FILENO);
 	nbytes_written++;
 	if (space && spec.minus > 0)
-		nbytes_written += strlprint(ft_strlen((space)));
+		nbytes_written += strlprint(space, ft_strlen((space)));
 	return (nbytes_written);
 }
 
