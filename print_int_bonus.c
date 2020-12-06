@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/06 10:57:43 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/06 12:35:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	get_zero_space(t_spec spec, char **zero, char **space, char *arg)
 	return (nzero + nspace);
 }
 
-int print_0x(t_spec spec, char *arg)
+int	print_0x(t_spec spec, char *arg)
 {
 	char c;
 
@@ -64,7 +64,7 @@ int	print_sign(t_spec spec, char **arg)
 	return (print_0x(spec, *arg));
 }
 
-int				print_int(t_spec spec, char *arg)
+int	print_int(t_spec spec, char *arg)
 {
 	char	*zero;
 	char	*space;
