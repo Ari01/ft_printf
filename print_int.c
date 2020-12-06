@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/06 06:51:32 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/06 06:56:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static size_t	get_nzeros(t_spec spec, char *arg)
 	nblen = ft_strlen(arg);
 	if (spec.zero > 0 && spec.width > nblen)
 		return (spec.width - nblen);
-	if (*arg == '-' || *arg == '0')
+	if (*arg == '-')
 		nblen--;
 	if (spec.precision > nblen)
 		return (spec.precision - nblen);
@@ -31,7 +31,9 @@ size_t			get_nspaces(t_spec spec, char *arg, int nzero)
 	int nblen;
 
 	nblen = ft_strlen(arg);
-	if (!ft_atoi(arg) && !spec.precision)
+	if (*arg == '-')
+		arg++;
+	if (!(*arg) && !spec.precision)
 		nblen--;
 	if (spec.width > nzero + nblen)
 		return (spec.width - nblen - nzero);
