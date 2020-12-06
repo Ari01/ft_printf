@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 08:02:11 by user42            #+#    #+#             */
-/*   Updated: 2020/12/06 06:56:53 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/06 06:58:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ size_t			get_nspaces(t_spec spec, char *arg, int nzero)
 	nblen = ft_strlen(arg);
 	if (*arg == '-')
 		arg++;
-	if (!(*arg) && !spec.precision)
+	if (*arg == '0' && !spec.precision)
 		nblen--;
 	if (spec.width > nzero + nblen)
 		return (spec.width - nblen - nzero);
