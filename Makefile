@@ -70,7 +70,7 @@ clean :
 				cd $(LIBFT) && $(MAKE) clean && cd .. && $(RM) $(OBJS) $(BONUSOBJS)
 
 fclean :		clean
-				cd $(LIBFT) && $(MAKE) fclean && cd .. && $(RM) $(NAME)
+				cd $(LIBFT) && $(MAKE) fclean && cd .. && $(RM) $(NAME) $(ALLMAIN)
 
 re :			clean fclean all
 
