@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char_bonus.c                                 :+:      :+:    :+:   */
+/*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 06:34:06 by user42            #+#    #+#             */
-/*   Updated: 2020/12/06 12:21:16 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/05 14:41:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
+
+int			print_space_zero(char *sz)
+{
+	ft_putstr_fd(sz, STDOUT_FILENO);
+	return (ft_strlen(sz));
+}
 
 int			print_all(t_spec spec, char *space, char *zero, unsigned char c)
 {
@@ -18,13 +24,13 @@ int			print_all(t_spec spec, char *space, char *zero, unsigned char c)
 
 	nbytes_written = 0;
 	if (space && spec.minus < 0)
-		nbytes_written += strlprint(space, ft_strlen(space));
+		nbytes_written += print_space_zero(space);
 	if (zero)
-		nbytes_written += strlprint(zero, ft_strlen(zero));
+		nbytes_written += print_space_zero(zero);
 	ft_putchar_fd(c, STDOUT_FILENO);
 	nbytes_written++;
 	if (space && spec.minus > 0)
-		nbytes_written += strlprint(space, ft_strlen((space)));
+		nbytes_written += print_space_zero(space);
 	return (nbytes_written);
 }
 
