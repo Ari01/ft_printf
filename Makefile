@@ -41,27 +41,30 @@ LFLAGS = -L. -lftprintf
 INCLUDE = -I libft
 
 LFTOBJS = $(LIBFTDIR)/*.o 
-LIBFT = libft.a
-LIBFTDIR = libft
+LIBFT = $(LIBFTDIR)libft.a
+LIBFTDIR = libft/
 LIBFTFLAGS = -L libft -lft
 
 # RULES
 
 all :			$(NAME)
 
-$(NAME) :		$(OBJS) $(LIBFT)
-				$(LIB) $@ $(OBJS) $(LIBFT)
+$(NAME) :		$(OBJS)
+				cd $(LIBFTDIR) && $(MAKE) $(BONUS)
+				cp $(LIBFT) $(NAME)
+				$(LIB) $@ $^
 
-$(BONUS) :		$(LIBFT) $(BONUSOBJS)
-				$(LIB) $(NAME) $(BONUSOBJS) $(LFTOBJS)
+$(BONUS) :		$(BONUSOBJS)
+				cd $(LIBFTDIR) && $(MAKE) $(BONUS)
+				cp $(LIBFT) $@
+				$(LIB) $@ $^
+				cp $@ $(NAME)
+
 
 $(TEST) :		$(ALLMAIN)
 
 $(ALLMAIN) :	%: %.c $(BONUS)
 				$(CC) -o $@ $< $(LFLAGS)
-
-$(LIBFT) :
-				cd $(LIBFTDIR) && $(MAKE) bonus && cp $(LIBFT) ../
 
 .c.o :		
 				$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
@@ -70,7 +73,7 @@ clean :
 				cd $(LIBFTDIR) && $(MAKE) clean && cd .. && $(RM) $(OBJS) $(BONUSOBJS)
 
 fclean :		clean
-				cd $(LIBFTDIR) && $(MAKE) fclean && cd .. && $(RM) $(NAME) $(LIBFT) $(ALLMAIN)
+				cd $(LIBFTDIR) && $(MAKE) fclean && cd .. && $(RM) $(NAME) $(ALLMAIN)
 
 re :			clean fclean all
 
