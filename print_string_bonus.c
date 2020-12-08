@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 16:42:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/06 07:22:44 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 08:29:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,17 @@ char		*get_zero(t_spec spec, int slen)
 	return (zero);
 }
 
-static void	freeptrs(char *space, char *zero)
+static void	freeptrs(char *s, char *space, char *zero)
 {
 	free(space);
 	free(zero);
+	free(s);
 	space = NULL;
 	zero = NULL;
+	s = NULL;
 }
 
-int			print_string(t_spec spec, const char *s)
+int			print_string(t_spec spec, char *s)
 {
 	int		slen;
 	int		nbytes_written;
@@ -80,6 +82,6 @@ int			print_string(t_spec spec, const char *s)
 	if (space && spec.minus > 0)
 		ft_putstr_fd(space, STDOUT_FILENO);
 	nbytes_written = slen + ft_strlen(space) + ft_strlen(zero);
-	freeptrs(space, zero);
+	freeptrs(s, space, zero);
 	return (nbytes_written);
 }

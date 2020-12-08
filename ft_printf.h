@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 14:16:34 by user42            #+#    #+#             */
-/*   Updated: 2020/12/06 12:51:35 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 08:29:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*convert_base(unsigned long int n, char *base);
 
 int		print_int(t_spec spec, char *arg);
 int		print_char(t_spec spec, unsigned char c);
-int		print_string(t_spec spec, const char *s);
+int		print_string(t_spec spec, char *s);
 int		print_adress(t_spec spec, void *adr);
 ssize_t	strlprint(const char *s, size_t len);
 
