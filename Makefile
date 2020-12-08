@@ -1,4 +1,9 @@
-# VARS
+# MAKE COMMANDS
+NAME = libftprintf.a
+BONUS = bonus
+TEST = test
+
+# SRCS OBJS and EXECS
 SRC = convert_base.c \
 convert_u.c \
 ft_printf.c \
@@ -24,48 +29,48 @@ set_specs_bonus.c
 
 OBJS = $(SRC:.c=.o)
 BONUSOBJS = $(BONUSSRC:.c=.o)
+
 ALLMAIN = main_bonus_d \
 main_bonus_u \
 main_bonus_x \
 main_bonus_X
 
-NAME = libftprintf.a
-BONUS = bonus
-TEST = test
-
-RM = rm -Rf
+# COMPIL
 CC = clang
-LIB = ar cr
 CFLAGS = -Wall -Wextra -Werror
 LFLAGS = -L. -lftprintf
-INCLUDE = -I libft
-
-LFTOBJS = $(LIBFTDIR)/*.o 
-LIBFT = $(LIBFTDIR)libft.a
 LIBFTDIR = libft/
-LIBFTFLAGS = -L libft -lft
+LIBFT = $(LIBFTDIR)libft.a
 
-# RULES
+# OTHER VARS
+TOGGLE_BONUS = no
+RM = rm -Rf
 
+# ALL RULE
 all :			$(NAME)
 
-$(NAME) :		$(OBJS)
-				cd $(LIBFTDIR) && $(MAKE) $(BONUS)
-				cp $(LIBFT) $(NAME)
-				$(LIB) $@ $^
-
-$(BONUS) :		$(BONUSOBJS)
+ifeq ($(TOGGLE_BONUS), yes)
+$(NAME) :		$(BONUSOBJS)
 				cd $(LIBFTDIR) && $(MAKE) $(BONUS)
 				cp $(LIBFT) $@
-				$(LIB) $@ $^
-				cp $@ $(NAME)
+				ar cr $@ $(BONUSOBJS)
+else
+$(NAME) :		$(OBJS)
+				cd $(LIBFTDIR) && $(MAKE) $(BONUS)
+				cp $(LIBFT) $@
+				ar cr $@ $(OBJS)
+endif
 
+$(BONUS) :		
+				make TOGGLE_BONUS=yes
 
+# TESTS RULES
 $(TEST) :		$(ALLMAIN)
 
 $(ALLMAIN) :	%: %.c $(BONUS)
 				$(CC) -o $@ $< $(LFLAGS)
 
+# COMPILE CLEAN RE
 .c.o :		
 				$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
